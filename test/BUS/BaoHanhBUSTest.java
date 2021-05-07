@@ -15,13 +15,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import BUS.Tool;
+import java.io.FileInputStream;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
  * @author Vind
  */
 public class BaoHanhBUSTest {
-    String filePath = "./TestFile/BHBUS.xlsx";
+
+    String filePath = "BHBUS.xlsx";
+
     public BaoHanhBUSTest() {
     }
 
@@ -51,7 +56,7 @@ public class BaoHanhBUSTest {
         try {
             instance.getData();
             assertFalse(instance.list.equals(null));
-        }catch(Exception e){
+        } catch (Exception e) {
             fail("Cant Get Data from DB");
         }
     }
@@ -63,10 +68,10 @@ public class BaoHanhBUSTest {
     public void testGetds() {
         System.out.println("getds");
         BaoHanhBUS instance = new BaoHanhBUS();
-        try{
-        ArrayList<BaoHanhDTO> result = instance.getds();
+        try {
+            ArrayList<BaoHanhDTO> result = instance.getds();
             assertFalse(result.equals(null));
-        }catch(Exception e){
+        } catch (Exception e) {
             fail("Cant get ds");
         }
         // TODO review the generated test code and remove the default call to fail.
@@ -80,16 +85,31 @@ public class BaoHanhBUSTest {
     public void testSearch() {
         System.out.println("search");
         BaoHanhBUS instance = new BaoHanhBUS();
-        for(int i = 5; i<=10 ;i++){
-        String value = Tool.getCellStringValue(0, i, 1, filePath);
-        String Type = Tool.getCellStringValue(0, i, 2, filePath);
-        LocalDate ngay_1 = Tool.getCellDate(0, i, 3, filePath);
-        LocalDate ngay_2 = Tool.getCellDate(0, i, 4, filePath);       
-        String expResult = Tool.getCellStringValue(0, i, 5, filePath);
-        ArrayList<BaoHanhDTO> result = instance.search(value, Type, null, null);
-        assertEquals(result.get(0).getMaHoaDon(), expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        Workbook wb = null;
+        try{
+            wb = new XSSFWorkbook("./TestFile/"+filePath);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        for (int i = 5; i <= 10; i++) {
+            String value = Tool.getCellStringValue(wb,0, i, 1, filePath);
+            String Type = Tool.getCellStringValue(wb,0, i, 2, filePath);
+            LocalDate ngay_1 = Tool.getCellDate(wb,0, i, 3, filePath);
+            LocalDate ngay_2 = Tool.getCellDate(wb,0, i, 4, filePath);
+            String expResult = Tool.getCellStringValue(wb,0, i, 5, filePath);
+            ArrayList<BaoHanhDTO> result = instance.search(value, Type, null, null);
+            if (result != null) {
+                assertEquals(result.get(0).getMaHoaDon(), expResult);
+                Tool.setValue(wb, 0, i, 6, result.get(0).getMaHoaDon());
+            }else{
+                if(expResult.equals("null")){
+                    assertEquals(true, true);
+                }
+                Tool.setValue(wb, 0, i, 6,"null");
+            }
+            // TODO review the generated test code and remove the default call to fail.
+            //fail("The test case is a prototype.");
+            Tool.writeEx(wb, filePath);
         }
     }
 

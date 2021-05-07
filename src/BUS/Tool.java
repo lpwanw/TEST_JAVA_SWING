@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.NumberFormat;
@@ -26,6 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -239,10 +242,8 @@ public class Tool {
         return Tool.removeAccent(string1).contains(Tool.removeAccent(string2));
     }
 
-    public static String getCellStringValue(int s, int r, int c, String filePath) {
+    public static String getCellStringValue(Workbook wb,int s, int r, int c, String filePath) {
         try {
-            FileInputStream fis = new FileInputStream(filePath);
-            Workbook wb = new XSSFWorkbook(filePath);
             Sheet sheet = wb.getSheetAt(s);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Row row = sheet.getRow(r);
@@ -258,10 +259,8 @@ public class Tool {
         }
     }
 
-    public static double getCellNumber(int s, int r, int c, String filePath) {
+    public static double getCellNumber(Workbook wb,int s, int r, int c, String filePath) {
         try {
-            FileInputStream fis = new FileInputStream(filePath);
-            Workbook wb = new XSSFWorkbook(filePath);
             Sheet sheet = wb.getSheetAt(s);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Row row = sheet.getRow(r);
@@ -277,10 +276,8 @@ public class Tool {
         }
     }
 
-    public static LocalDate getCellDate(int s, int r, int c, String filePath) {
+    public static LocalDate getCellDate(Workbook wb,int s, int r, int c, String filePath) {
         try {
-            FileInputStream fis = new FileInputStream(filePath);
-            Workbook wb = new XSSFWorkbook(filePath);
             Sheet sheet = wb.getSheetAt(s);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Row row = sheet.getRow(r);
@@ -298,7 +295,30 @@ public class Tool {
         }
     }
 
+    public static void setValue(Workbook wb,int s, int r, int c, String Value) {
+        try {
+            //FileInputStream fis = new FileInputStream("./TestFileCopy/"+filePath);
+            Sheet sheet = wb.getSheetAt(s);
+            FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
+            Row row = sheet.getRow(r);
+            Cell cell = row.getCell(c);
+            cell.setCellValue(Value); 
+            //fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void writeEx(Workbook wb,String filePath){
+        try {
+                FileOutputStream out = new FileOutputStream(new File("./OutPut/"+filePath));
+                wb.write(out);
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
     public static void main(String[] agrs) {
-        System.out.println(getCellStringValue(0, 5, 1, "./TestFile/BHBUS.xlsx"));
     }
 }
