@@ -302,8 +302,12 @@ public class Tool {
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Row row = sheet.getRow(r);
             Cell cell = row.getCell(c);
-            System.out.println("a"+ Value);
-            cell.setCellValue(Value); 
+            if(cell==null){
+                row.createCell(c);
+                cell = row.getCell(c);
+                cell.setCellValue(Value);
+            }else
+                cell.setCellValue(Value); 
             //fis.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -311,7 +315,7 @@ public class Tool {
     }
     public static void writeEx(Workbook wb,String filePath){
         try {
-                FileOutputStream out = new FileOutputStream(new File("./OutPut/"+filePath));
+                FileOutputStream out = new FileOutputStream("./TestFile/"+filePath);
                 wb.write(out);
                 out.close();
             } catch (FileNotFoundException e) {
