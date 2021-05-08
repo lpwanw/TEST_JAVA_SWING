@@ -242,7 +242,7 @@ public class Tool {
         return Tool.removeAccent(string1).contains(Tool.removeAccent(string2));
     }
 
-    public static String getCellStringValue(Workbook wb,int s, int r, int c, String filePath) {
+    public static String getCellStringValue(Workbook wb,int s, int r, int c) {
         try {
             Sheet sheet = wb.getSheetAt(s);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
@@ -259,7 +259,7 @@ public class Tool {
         }
     }
 
-    public static double getCellNumber(Workbook wb,int s, int r, int c, String filePath) {
+    public static double getCellNumber(Workbook wb,int s, int r, int c) {
         try {
             Sheet sheet = wb.getSheetAt(s);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
@@ -276,7 +276,7 @@ public class Tool {
         }
     }
 
-    public static LocalDate getCellDate(Workbook wb,int s, int r, int c, String filePath) {
+    public static LocalDate getCellDate(Workbook wb,int s, int r, int c) {
         try {
             Sheet sheet = wb.getSheetAt(s);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
@@ -302,6 +302,7 @@ public class Tool {
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Row row = sheet.getRow(r);
             Cell cell = row.getCell(c);
+            System.out.println("a"+ Value);
             cell.setCellValue(Value); 
             //fis.close();
         } catch (Exception e) {

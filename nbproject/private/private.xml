@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/GUI/DangNhap.java</file>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/BUS/BaoHanhBUS.java</file>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/GUI/HienThi/HienThiHoaDon.java</file>
             <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/test/BUS/BaoHanhBUSTest.java</file>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/GUI/HienThi/FormHienThi.java</file>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/DAO/BaoHanhDAO.java</file>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/GUI/HienThi/ThemSuaSanPham.java</file>
-            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/test/GUI/HienThi/HienThiHoaDonTest.java</file>
+            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/src/BUS/HoaDonBUS.java</file>
+            <file>file:/C:/Users/Vind/Documents/NetBeansProjects/Quanlitest-master/test/BUS/HoaDonBUSTest.java</file>
         </group>
     </open-files>
 </project-private>

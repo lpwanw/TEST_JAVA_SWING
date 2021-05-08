@@ -19,6 +19,14 @@ public class CTHDBUS {
     public CTHDBUS() {
         getData();
     }
+
+    public ArrayList<CTHoaDonDTO> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<CTHoaDonDTO> list) {
+        this.list = list;
+    }
     public void getData(){
         list = CTHoaDonDAO.getCTHoaDon();
     }
