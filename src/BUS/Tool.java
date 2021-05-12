@@ -258,6 +258,39 @@ public class Tool {
             return "";
         }
     }
+    
+    public static Date getCellDateValue(Workbook wb,int s, int r, int c) {
+        try {
+            Sheet sheet = wb.getSheetAt(s);
+            FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
+            Row row = sheet.getRow(r);
+            Cell cell = row.getCell(c);
+            if (cell != null) {
+                return (Date) cell.getDateCellValue();
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+     public static boolean getCellBooleanValue(Workbook wb,int s, int r, int c) {
+        try {
+            Sheet sheet = wb.getSheetAt(s);
+            FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
+            Row row = sheet.getRow(r);
+            Cell cell = row.getCell(c);
+            if (cell != null) {
+                return cell.getBooleanCellValue();
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public static double getCellNumber(Workbook wb,int s, int r, int c) {
         try {
@@ -296,6 +329,25 @@ public class Tool {
     }
 
     public static void setValue(Workbook wb,int s, int r, int c, String Value) {
+        try {
+            //FileInputStream fis = new FileInputStream("./TestFileCopy/"+filePath);
+            Sheet sheet = wb.getSheetAt(s);
+            FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
+            Row row = sheet.getRow(r);
+            Cell cell = row.getCell(c);
+            if(cell==null){
+                row.createCell(c);
+                cell = row.getCell(c);
+                cell.setCellValue(Value);
+            }else
+                cell.setCellValue(Value); 
+            //fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void setBooleanValue(Workbook wb,int s, int r, int c, Boolean Value) {
         try {
             //FileInputStream fis = new FileInputStream("./TestFileCopy/"+filePath);
             Sheet sheet = wb.getSheetAt(s);

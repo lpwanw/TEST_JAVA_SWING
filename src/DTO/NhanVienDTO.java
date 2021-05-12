@@ -48,7 +48,7 @@ public class NhanVienDTO {
         this.luong = luong;
         this.trangThai = trangThai;
     }
-    private String maQuyen;
+        private String maQuyen;
     private int luong;
     private int trangThai;
 

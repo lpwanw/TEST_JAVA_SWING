@@ -53,12 +53,12 @@ public class KhachHangDAO {
             Connection conn = MySQLConnUtils.getMySQLConnection();
             Statement st = conn.createStatement();
             String Sql = "UPDATE tblkhachhang "
-                    +"SET hokhachang = '"+sp.getHoKhachHang()+"',"
+                    +"SET hokhachhang = '"+sp.getHoKhachHang()+"',"
                     +" tenkhachhang = '"+sp.getTenKhachHang()+"',"
                     +" ngaysinh = '"+sp.getNgaySinh()+"',"
                     +" sodienthoai = '"+sp.getSdt()+"',"
                     +" loaikhachhang = '"+sp.getLoaiKhachHang()+"',"
-                    +" tichluy = '"+sp.getTichLuy()+"',"
+                    +" tichluy = '"+sp.getTichLuy()+"'"
                     +"WHERE makhachhang = '"+sp.getMaKhachHang()+"';";
             int row = st.executeUpdate(Sql);
             if(row>0) result =true;

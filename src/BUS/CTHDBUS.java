@@ -30,6 +30,21 @@ public class CTHDBUS {
     public void getData(){
         list = CTHoaDonDAO.getCTHoaDon();
     }
+    public CTHoaDonDTO cthd(String mahd){
+        
+       
+        
+        for(CTHoaDonDTO ct : list){
+            if (ct.getMaHoaDon().equals(mahd)){
+                return ct;
+            }
+        
+        }
+        return null;
+        
+    }
+    
+    
     public ArrayList<CTHoaDonDTO> Seacrh(String maHD){
         ArrayList<CTHoaDonDTO> result= new ArrayList<>();
         for(CTHoaDonDTO ct:list){

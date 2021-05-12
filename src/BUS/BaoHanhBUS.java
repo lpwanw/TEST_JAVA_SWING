@@ -34,7 +34,7 @@ public class BaoHanhBUS {
     public ArrayList<BaoHanhDTO> getds() {
         return list;
     }
-
+  
     public ArrayList<BaoHanhDTO> search(String value, String Type, LocalDate ngay_1, LocalDate ngay_2) {
         HoaDonBUS qlHD = new HoaDonBUS();
         KhachHangBUS qlKH = new KhachHangBUS();
