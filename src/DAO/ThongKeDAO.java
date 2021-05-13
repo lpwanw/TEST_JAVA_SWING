@@ -29,6 +29,7 @@ public class ThongKeDAO {
             ResultSet rs = st.executeQuery(Sql);
             while(rs.next()){
                 System.out.println(rs.getInt(1));
+               tong=rs.getInt(1);
             }
             conn.close();
         }catch(Exception e){
@@ -108,10 +109,7 @@ public class ThongKeDAO {
         }
         return tong;
     }
-    public static void main(String[] args) {
-        ThongKeDAO.getThuNhapNgay("2020-06-08","2020-07-09");
-        System.out.println(ThongKeDAO.getThuNhapThang(6+"", 6+1+"",2020+""));
-    }
+   
     public static ArrayList<CTHoaDonDTO> getCTHOADON(LocalDate date1,LocalDate date2,String sp,String nv,String KH){
         ArrayList<CTHoaDonDTO> result = new ArrayList<>();
         try {

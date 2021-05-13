@@ -80,6 +80,7 @@ public class BaoHanhBUSTest {
                 if(result!=null){
                     assertEquals(true, true);
                     Tool.setValue(wb, 1, i, 3, "!null");
+                    System.out.println(Tool.getCellNumber(wb, 1, 1, 5));
                 }
             } catch (Exception e) {
                     fail("Cant get ds");
@@ -92,38 +93,39 @@ public class BaoHanhBUSTest {
     }
 
     /**
+     * 
      * Test of search method, of class BaoHanhBUS.
      */
-    @Test
-    public void testSearch() {
-        System.out.println("search");
-        BaoHanhBUS instance = new BaoHanhBUS();
-        Workbook wb = null;
-        try{
-            wb = new XSSFWorkbook("./TestFile/"+filePath);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        for (int i = 5; i <Tool.getCellNumber(wb, 0, 1, 8); i++) {
-            String value = Tool.getCellStringValue(wb,0, i, 1);
-            String Type = Tool.getCellStringValue(wb,0, i, 2);
-            LocalDate ngay_1 = Tool.getCellDate(wb,0, i, 3);
-            LocalDate ngay_2 = Tool.getCellDate(wb,0, i, 4);
-            String expResult = Tool.getCellStringValue(wb,0, i, 5);
-            ArrayList<BaoHanhDTO> result = instance.search(value, Type, null, null);
-            if (result != null) {
-                assertEquals(result.get(0).getMaHoaDon(), expResult);
-                Tool.setValue(wb, 0, i, 6, result.get(0).getMaHoaDon());
-            }else{
-                if(expResult.equals("null")){
-                    assertEquals(true, true);
-                }
-                Tool.setValue(wb, 0, i, 6,"null");
-            }
-            // TODO review the generated test code and remove the default call to fail.
-            //fail("The test case is a prototype.");
-            Tool.writeEx(wb, filePath);
-        }
-    }
+//    @Test
+//    public void testSearch() {
+//        System.out.println("search");
+//        BaoHanhBUS instance = new BaoHanhBUS();
+//        Workbook wb = null;
+//        try{
+//            wb = new XSSFWorkbook("./TestFile/"+filePath);
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        for (int i = 5; i <Tool.getCellNumber(wb, 0, 1, 8); i++) {
+//            String value = Tool.getCellStringValue(wb,0, i, 1);
+//            String Type = Tool.getCellStringValue(wb,0, i, 2);
+//            LocalDate ngay_1 = Tool.getCellDate(wb,0, i, 3);
+//            LocalDate ngay_2 = Tool.getCellDate(wb,0, i, 4);
+//            String expResult = Tool.getCellStringValue(wb,0, i, 5);
+//            ArrayList<BaoHanhDTO> result = instance.search(value, Type, null, null);
+//            if (result != null) {
+//                assertEquals(result.get(0).getMaHoaDon(), expResult);
+//                Tool.setValue(wb, 0, i, 6, result.get(0).getMaHoaDon());
+//            }else{
+//                if(expResult.equals("null")){
+//                    assertEquals(true, true);
+//                }
+//                Tool.setValue(wb, 0, i, 6,"null");
+//            }
+//            // TODO review the generated test code and remove the default call to fail.
+//            //fail("The test case is a prototype.");
+//            Tool.writeEx(wb, filePath);
+//        }
+//    }
 
 }

@@ -49,10 +49,16 @@ public class BaoHanhDAO {
         try {
             Connection conn = MySQLConnUtils.getMySQLConnection();
             Statement st = conn.createStatement();
-            String Sql = "UPDATE tblbaohanh "
+//            String Sql = "UPDATE tblbaohanh "
+//                    +"SET ngaylap = '"+sp.getNgayLap()+"',"
+//                    +" thoihan = '"+sp.getThoiHan()+"',"
+//                    +" mahoadon = '"+sp.getMaHoaDon()+"',"
+//                    +"WHERE masanpham = '"+sp.getMaSanPham()+"';";
+ String Sql = "UPDATE tblbaohanh "
                     +"SET ngaylap = '"+sp.getNgayLap()+"',"
-                    +" thoihan = '"+sp.getThoiHan()+"',"
-                    +" mahoadon = '"+sp.getMaHoaDon()+"',"
+                    +" thoihan = '"+sp.getThoiHan()+"'"
+                    
+                    
                     +"WHERE masanpham = '"+sp.getMaSanPham()+"';";
             int row = st.executeUpdate(Sql);
             if(row>0) result =true;
